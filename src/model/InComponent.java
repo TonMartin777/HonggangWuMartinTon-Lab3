@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package prog2.model;
+package model;
 
-import java.util.List;
 import prog2.vista.CentralUBException;
 
 /**

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prog2.model;
+package model;
 
-import java.util.ArrayList;
 import java.util.List;
 import prog2.vista.CentralUBException;
 
