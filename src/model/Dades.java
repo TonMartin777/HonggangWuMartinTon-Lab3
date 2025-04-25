@@ -4,11 +4,13 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Daniel Ortiz
  */
-public class Dades {
+public class Dades implements InDades{
     public final static long  VAR_UNIF_SEED = 123;
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
@@ -71,6 +73,71 @@ public class Dades {
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
           // Completar
+    }
+
+    @Override
+    public float getInsercioBarres() {
+        return 0;
+    }
+
+    @Override
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException {
+
+    }
+
+    @Override
+    public void activaReactor() throws CentralUBException {
+
+    }
+
+    @Override
+    public void desactivaReactor() {
+
+    }
+
+    @Override
+    public Reactor mostraReactor() {
+        return null;
+    }
+
+    @Override
+    public void activaBomba(int id) throws CentralUBException {
+
+    }
+
+    @Override
+    public void desactivaBomba(int id) {
+
+    }
+
+    @Override
+    public SistemaRefrigeracio mostraSistemaRefrigeracio() {
+        return null;
+    }
+
+    @Override
+    public float calculaPotencia() {
+        return 0;
+    }
+
+    @Override
+    public float getGuanysAcumulats() {
+        return 0;
+    }
+
+    @Override
+    public PaginaEstat mostraEstat() {
+        return null;
+    }
+
+    @Override
+    public Bitacola mostraBitacola() {
+        return null;
+    }
+
+    @Override
+    public List<PaginaIncidencies> mostraIncidencies() {
+        return List.of();
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {
