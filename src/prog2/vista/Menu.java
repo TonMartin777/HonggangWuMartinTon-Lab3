@@ -3,7 +3,7 @@
  * Programació 2
  * Curs 2015-2016
  */
-package vista;
+package prog2.vista;
 
 import java.util.Scanner;
 

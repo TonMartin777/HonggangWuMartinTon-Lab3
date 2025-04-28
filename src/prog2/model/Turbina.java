@@ -1,8 +1,7 @@
-package model;
+package prog2.model;
+import prog2.vista.CentralUBException;
 
-import java.awt.*;
-
-public class SistemaRefrigeracio implements InComponent {
+public class Turbina implements InComponent{
     @Override
     public void activa() throws CentralUBException {
 

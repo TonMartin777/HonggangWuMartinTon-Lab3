@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package prog2.vista;
 
 /**
  *
@@ -17,10 +17,10 @@ public class IniciadorCentralUB {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Creem un objecte de la vista
+        // Creem un objecte de la prog2.vista
         CentralUB centralUB=new CentralUB();
         
-        // Inicialitza l'execució de la vista
+        // Inicialitza l'execució de la prog2.vista
         centralUB.gestioCentralUB();
     }
     

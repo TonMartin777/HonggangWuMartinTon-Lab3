@@ -1,6 +1,12 @@
-package model;
+package prog2.model;
+import prog2.vista.CentralUBException;
+import java.util.ArrayList;
 
-public class GeneradorVapor implements InComponent{
+public class SistemaRefrigeracio implements InComponent {
+    ArrayList<BombaRefrigerant> llistaBombes = new ArrayList();
+
+    public void afegirBomba(BombaRefrigerant b) throws CentralUBException { llistaBombes.add(b); }
+
     @Override
     public void activa() throws CentralUBException {
 
