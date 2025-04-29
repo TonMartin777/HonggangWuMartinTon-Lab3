@@ -6,6 +6,7 @@ public class Bitacola implements InBitacola{
     @Override
     public void afegeixPagina(PaginaBitacola p) {
 
+
     }
 
     @Override
