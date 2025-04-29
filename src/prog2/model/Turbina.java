@@ -2,6 +2,8 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class Turbina implements InComponent{
+    private boolean activat;
+
     @Override
     public void activa() throws CentralUBException {
 
@@ -14,7 +16,7 @@ public class Turbina implements InComponent{
 
     @Override
     public boolean getActivat() {
-        return false;
+        return activat;
     }
 
     @Override
@@ -23,12 +25,18 @@ public class Turbina implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() {
-        return 0;
-    }
+    public float getCostOperatiu() { return 20; }
 
     @Override
     public float calculaOutput(float input) {
-        return 0;
+        if (activat) {
+            if (input < 100) {
+                return 0;
+            } else {
+                return input * 2;
+            }
+        } else {
+            return 0;
+        }
     }
 }

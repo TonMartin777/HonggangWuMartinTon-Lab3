@@ -2,6 +2,8 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class GeneradorVapor implements InComponent{
+    private boolean activat;
+
     @Override
     public void activa() throws CentralUBException {
 
@@ -14,7 +16,7 @@ public class GeneradorVapor implements InComponent{
 
     @Override
     public boolean getActivat() {
-        return false;
+        return activat;
     }
 
     @Override
@@ -23,12 +25,14 @@ public class GeneradorVapor implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() {
-        return 0;
-    }
+    public float getCostOperatiu() { return 25; }
 
     @Override
     public float calculaOutput(float input) {
-        return 0;
+        if (getActivat()){
+            return input * 0.9f;
+        } else {
+            return 25;
+        }
     }
 }

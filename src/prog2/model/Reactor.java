@@ -2,6 +2,11 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class Reactor implements InComponent{
+    private boolean activat;
+    private float temperatura;
+
+    public float getTemperatura() { return temperatura; }
+    public void setTemperatura(float temperatura) { this.temperatura = temperatura; }
     @Override
     public void activa() throws CentralUBException {
 
@@ -14,7 +19,7 @@ public class Reactor implements InComponent{
 
     @Override
     public boolean getActivat() {
-        return false;
+        return activat;
     }
 
     @Override
@@ -23,12 +28,14 @@ public class Reactor implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() {
-        return 0;
-    }
+    public float getCostOperatiu() { return 35; }
 
     @Override
     public float calculaOutput(float input) {
-        return 0;
+        if (getActivat()) {
+            return temperatura + (100 - input) * 10;
+        } else {
+            return temperatura;
+        }
     }
 }

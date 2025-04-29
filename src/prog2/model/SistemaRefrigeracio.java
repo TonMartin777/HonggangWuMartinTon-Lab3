@@ -3,9 +3,10 @@ import prog2.vista.CentralUBException;
 import java.util.ArrayList;
 
 public class SistemaRefrigeracio implements InComponent {
+    private boolean activat;
     ArrayList<BombaRefrigerant> llistaBombes = new ArrayList();
 
-    public void afegirBomba(BombaRefrigerant b) throws CentralUBException { llistaBombes.add(b); }
+    public void afegirBomba(BombaRefrigerant bomba) throws CentralUBException { llistaBombes.add(bomba); }
 
     @Override
     public void activa() throws CentralUBException {
@@ -19,7 +20,7 @@ public class SistemaRefrigeracio implements InComponent {
 
     @Override
     public boolean getActivat() {
-        return false;
+        return activat;
     }
 
     @Override
@@ -29,11 +30,23 @@ public class SistemaRefrigeracio implements InComponent {
 
     @Override
     public float getCostOperatiu() {
-        return 0;
+        int n = 0;
+        for (BombaRefrigerant b : llistaBombes) {
+            if (b.getActivat()){
+                n++;
+            }
+        }
+        return 130 * n;
     }
 
     @Override
     public float calculaOutput(float input) {
-        return 0;
+        int n = 0;
+        for (BombaRefrigerant b : llistaBombes) {
+            if (b.getActivat()){
+                n++;
+            }
+        }
+        return Math.min(input, 250 * n);
     }
 }

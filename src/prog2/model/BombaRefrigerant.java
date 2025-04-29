@@ -6,6 +6,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     boolean activat;
     boolean foraDeServei;
 
+
     public BombaRefrigerant (int id, boolean activat, boolean foraDeServei) {
         this.id = id;
         this.activat = activat;
