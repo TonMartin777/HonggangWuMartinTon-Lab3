@@ -10,22 +10,28 @@ public class SistemaRefrigeracio implements InComponent {
 
     @Override
     public void activa() throws CentralUBException {
-
+        for (BombaRefrigerant b : llistaBombes) {
+            if (!b.getForaDeServei()){
+                b.setActivat(true);
+            }
+        }
     }
 
     @Override
     public void desactiva() {
-
+        for (BombaRefrigerant b : llistaBombes) {
+            b.setActivat(false);
+        }
     }
 
     @Override
-    public boolean getActivat() {
-        return activat;
-    }
+    public boolean getActivat() { return activat; }
 
     @Override
     public void revisa(PaginaIncidencies p) {
-
+        for (BombaRefrigerant b : llistaBombes) {
+            b.revisa(p);
+        }
     }
 
     @Override

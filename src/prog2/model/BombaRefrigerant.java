@@ -19,6 +19,8 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     @Override
     public boolean getActivat() { return activat; }
 
+    public void setActivat(boolean activat) { this.activat = activat; }
+
     @Override
     public boolean getForaDeServei() { return foraDeServei; }
 
