@@ -2,9 +2,9 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class BombaRefrigerant implements InBombaRefrigerant{
-    int id;
-    boolean activat;
-    boolean foraDeServei;
+    private int id;
+    private boolean activat;
+    private boolean foraDeServei;
 
 
     public BombaRefrigerant (int id, boolean activat, boolean foraDeServei) {
