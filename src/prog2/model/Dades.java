@@ -1,4 +1,6 @@
 package prog2.model;
+import prog2.vista.CentralUBException;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,16 @@ public class Dades implements InDades{
     public final static float PENALITZACIO_EXCES_POTENCIA = 250;
 
     // Afegir atributs:
+
+    private VariableUniforme variableUniforme;
+    private int insercioBarres;
+    private Reactor reactor;
+    private SistemaRefrigeracio sistemaRefrigeracio;
+    private GeneradorVapor generadorVapor;
+    private Turbina turbina;
+    private Bitacola bitacola;
+    private int dia;
+    private float guanysAcumulats;
 
     public Dades(){
         // Inicialitza Atributs
@@ -50,7 +62,21 @@ public class Dades implements InDades{
      * @param demandaPotencia Demanda de potència actual.
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
-          // Completar
+        double potenciaGenerada=calculaPotencia();
+
+        double percentatgePotenciaStisfeta= potenciaGenerada/demandaPotencia;
+
+        double beneficis;
+        double penalitzacio=0;
+        if (potenciaGenerada>demandaPotencia){
+            beneficis=demandaPotencia*PREU_UNITAT_POTENCIA;
+            penalitzacio=PENALITZACIO_EXCES_POTENCIA;
+        }
+        else {
+            beneficis=potenciaGenerada*PREU_UNITAT_POTENCIA;
+        }
+
+        for (Component c : )
     }
 
     /**
@@ -112,7 +138,10 @@ public class Dades implements InDades{
 
     @Override
     public float calculaPotencia() {
-        return 0;
+       return turbina.calculaOutput(
+               generadorVapor.calculaOutput(
+                       sistemaRefrigeracio.calculaOutput(
+                               reactor.calculaOutput(insercioBarres))));
     }
 
     @Override
