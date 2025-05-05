@@ -62,12 +62,12 @@ public class Dades implements InDades{
      * @param demandaPotencia Demanda de potència actual.
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
-        double potenciaGenerada=calculaPotencia();
+        float potenciaGenerada=calculaPotencia();
 
-        double percentatgePotenciaStisfeta= potenciaGenerada/demandaPotencia;
+        float percentatgePotenciaStisfeta= potenciaGenerada/demandaPotencia;
 
-        double beneficis;
-        double penalitzacio=0;
+        float beneficis;
+        float penalitzacio=0;
         if (potenciaGenerada>demandaPotencia){
             beneficis=demandaPotencia*PREU_UNITAT_POTENCIA;
             penalitzacio=PENALITZACIO_EXCES_POTENCIA;
@@ -76,7 +76,25 @@ public class Dades implements InDades{
             beneficis=potenciaGenerada*PREU_UNITAT_POTENCIA;
         }
 
-        for (Component c : )
+        float costOperatiu=5;
+        if (reactor.getActivat()){
+            costOperatiu+= reactor.getCostOperatiu()*PREU_UNITAT_POTENCIA;
+        }
+        if (generadorVapor.getActivat()){
+            costOperatiu+=generadorVapor.getCostOperatiu()*PREU_UNITAT_POTENCIA;
+        }
+        if (sistemaRefrigeracio.getActivat()){
+            costOperatiu+= sistemaRefrigeracio.getCostOperatiu()*PREU_UNITAT_POTENCIA;
+        }
+        if (turbina.getActivat()){
+            costOperatiu+= turbina.getCostOperatiu()*PREU_UNITAT_POTENCIA;
+        }
+
+        float guanysAcumulats=(GUANYS_INICIALS+beneficis)-(costOperatiu+penalitzacio);
+
+        PaginaEconomica novaPagina = new PaginaEconomica(dia,demandaPotencia,potenciaGenerada,percentatgePotenciaStisfeta,
+                beneficis,penalitzacio,costOperatiu,guanysAcumulats);
+        return novaPagina;
     }
 
     /**

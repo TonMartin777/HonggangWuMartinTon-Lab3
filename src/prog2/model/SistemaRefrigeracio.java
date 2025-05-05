@@ -17,6 +17,10 @@ public class SistemaRefrigeracio implements InComponent {
         }
     }
 
+    public ArrayList<BombaRefrigerant> getLlistaBombes() {
+        return llistaBombes;
+    }
+
     @Override
     public void desactiva() {
         for (BombaRefrigerant b : llistaBombes) {
