@@ -7,14 +7,22 @@ public class Reactor implements InComponent{
 
     public float getTemperatura() { return temperatura; }
     public void setTemperatura(float temperatura) { this.temperatura = temperatura; }
+    public void setActivat(boolean activat) {
+        this.activat = activat;
+    }
+
     @Override
     public void activa() throws CentralUBException {
-
+        if (getTemperatura() > 1000 ) {
+            throw new CentralUBException("Temperatura superior a 1000 graus");
+        } else {
+            setActivat(true);
+        }
     }
 
     @Override
     public void desactiva() {
-
+        setActivat(false);
     }
 
     @Override

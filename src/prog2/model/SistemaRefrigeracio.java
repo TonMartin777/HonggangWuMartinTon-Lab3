@@ -6,7 +6,15 @@ public class SistemaRefrigeracio implements InComponent {
     private boolean activat;
     ArrayList<BombaRefrigerant> llistaBombes = new ArrayList();
 
+    public SistemaRefrigeracio(boolean activat, ArrayList<BombaRefrigerant> llistaBombes) {
+        this.activat = activat;
+        this.llistaBombes = llistaBombes;
+    }
     public void afegirBomba(BombaRefrigerant bomba) throws CentralUBException { llistaBombes.add(bomba); }
+
+    public void setActivat(boolean activat) {
+        this.activat = activat;
+    }
 
     @Override
     public void activa() throws CentralUBException {

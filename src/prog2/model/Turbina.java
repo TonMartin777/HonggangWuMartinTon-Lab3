@@ -4,14 +4,19 @@ import prog2.vista.CentralUBException;
 public class Turbina implements InComponent{
     private boolean activat;
 
+
+    public void setActivat(boolean activat) {
+        this.activat = activat;
+    }
+
     @Override
     public void activa() throws CentralUBException {
-
+        setActivat(true);
     }
 
     @Override
     public void desactiva() {
-
+        setActivat(false);
     }
 
     @Override
