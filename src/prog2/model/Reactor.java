@@ -36,7 +36,9 @@ public class Reactor implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() { return 35; }
+    public float getCostOperatiu() {
+        if (getActivat()){ return 35; } else { return 0; }
+    }
 
     @Override
     public float calculaOutput(float input) {

@@ -29,7 +29,9 @@ public class GeneradorVapor implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() { return 25; }
+    public float getCostOperatiu() {
+        if (getActivat()) {return 25;} else {return 0;}
+    }
 
     @Override
     public float calculaOutput(float input) {

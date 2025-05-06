@@ -4,7 +4,6 @@ import prog2.vista.CentralUBException;
 public class Turbina implements InComponent{
     private boolean activat;
 
-
     public void setActivat(boolean activat) {
         this.activat = activat;
     }
@@ -30,7 +29,9 @@ public class Turbina implements InComponent{
     }
 
     @Override
-    public float getCostOperatiu() { return 20; }
+    public float getCostOperatiu() {
+        if (getActivat()){return 20;} else {return 0;}
+    }
 
     @Override
     public float calculaOutput(float input) {
