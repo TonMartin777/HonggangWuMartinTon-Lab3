@@ -32,7 +32,9 @@ public class Reactor implements InComponent{
 
     @Override
     public void revisa(PaginaIncidencies p) {
-
+        if (getTemperatura() > 1000 ) {
+            p.afegeixIncidencia("La temperatur a del reactor és superior a 1000ºC.");
+        }
     }
 
     @Override

@@ -25,7 +25,7 @@ public class GeneradorVapor implements InComponent{
 
     @Override
     public void revisa(PaginaIncidencies p) {
-
+        // Aquesta clase no llença incidencies.
     }
 
     @Override
