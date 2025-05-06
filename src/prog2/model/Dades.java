@@ -12,6 +12,7 @@ public class Dades implements InDades{
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
     public final static float PENALITZACIO_EXCES_POTENCIA = 250;
+    public final static float COST_OPERATIU_BARRES_CONTROL =5;
 
     // Afegir atributs:
 
@@ -76,21 +77,11 @@ public class Dades implements InDades{
             beneficis=potenciaGenerada*PREU_UNITAT_POTENCIA;
         }
 
-        float costOperatiu=5;
-        if (reactor.getActivat()){
-            costOperatiu+= reactor.getCostOperatiu()*PREU_UNITAT_POTENCIA;
-        }
-        if (generadorVapor.getActivat()){
-            costOperatiu+=generadorVapor.getCostOperatiu()*PREU_UNITAT_POTENCIA;
-        }
-        if (sistemaRefrigeracio.getActivat()){
-            costOperatiu+= sistemaRefrigeracio.getCostOperatiu()*PREU_UNITAT_POTENCIA;
-        }
-        if (turbina.getActivat()){
-            costOperatiu+= turbina.getCostOperatiu()*PREU_UNITAT_POTENCIA;
-        }
+        float costOperatiu=(COST_OPERATIU_BARRES_CONTROL+ reactor.getCostOperatiu()+
+                sistemaRefrigeracio.getCostOperatiu()+ generadorVapor.getCostOperatiu()+
+                turbina.getCostOperatiu())*PREU_UNITAT_POTENCIA;
 
-        float guanysAcumulats=(GUANYS_INICIALS+beneficis)-(costOperatiu+penalitzacio);
+        guanysAcumulats=beneficis-(costOperatiu+penalitzacio);
 
         PaginaEconomica novaPagina = new PaginaEconomica(dia,demandaPotencia,potenciaGenerada,percentatgePotenciaStisfeta,
                 beneficis,penalitzacio,costOperatiu,guanysAcumulats);
@@ -116,7 +107,7 @@ public class Dades implements InDades{
 
     @Override
     public float getInsercioBarres() {
-        return 0;
+        return insercioBarres;
     }
 
     @Override
@@ -164,7 +155,7 @@ public class Dades implements InDades{
 
     @Override
     public float getGuanysAcumulats() {
-        return 0;
+        return guanysAcumulats;
     }
 
     @Override
