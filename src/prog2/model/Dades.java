@@ -117,7 +117,7 @@ public class Dades implements InDades{
 
     @Override
     public void activaReactor() throws CentralUBException {
-
+        reactor.activa();
     }
 
     @Override
@@ -127,7 +127,7 @@ public class Dades implements InDades{
 
     @Override
     public Reactor mostraReactor() {
-        return null;
+        return reactor;
     }
 
     @Override
@@ -142,7 +142,7 @@ public class Dades implements InDades{
 
     @Override
     public SistemaRefrigeracio mostraSistemaRefrigeracio() {
-        return null;
+        return sistemaRefrigeracio;
     }
 
     @Override
@@ -160,12 +160,12 @@ public class Dades implements InDades{
 
     @Override
     public PaginaEstat mostraEstat() {
-        return null;
+        ;
     }
 
     @Override
     public Bitacola mostraBitacola() {
-        return null;
+        return bitacola;
     }
 
     @Override
