@@ -12,10 +12,6 @@ public class SistemaRefrigeracio implements InComponent {
     }
     public void afegirBomba(BombaRefrigerant bomba) throws CentralUBException { llistaBombes.add(bomba); }
 
-    public void setActivat(boolean activat) {
-        this.activat = activat;
-    }
-
     @Override
     public void activa() throws CentralUBException {
         for (BombaRefrigerant b : llistaBombes) {
@@ -25,9 +21,7 @@ public class SistemaRefrigeracio implements InComponent {
         }
     }
 
-    public ArrayList<BombaRefrigerant> getLlistaBombes() {
-        return llistaBombes;
-    }
+    public ArrayList<BombaRefrigerant> getLlistaBombes() { return llistaBombes; }
 
     @Override
     public void desactiva() {

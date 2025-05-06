@@ -1,5 +1,4 @@
 package prog2.model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +7,7 @@ public class Bitacola implements InBitacola{
 
     @Override
     public void afegeixPagina(PaginaBitacola p) {
-
-
+        llistaBitacola.add(p);
     }
 
     @Override
@@ -18,6 +16,11 @@ public class Bitacola implements InBitacola{
     }
 
     public String toString(){
-
+        String s = "";
+        for (PaginaBitacola p : llistaBitacola){
+            s += p.toString();
+            s += "\n";
+        }
+        return s;
     }
 }
