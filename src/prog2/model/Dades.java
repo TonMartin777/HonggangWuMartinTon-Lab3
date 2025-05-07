@@ -122,7 +122,7 @@ public class Dades implements InDades{
 
     @Override
     public void desactivaReactor() {
-
+        reactor.desactiva();
     }
 
     @Override
@@ -147,10 +147,7 @@ public class Dades implements InDades{
 
     @Override
     public float calculaPotencia() {
-       return turbina.calculaOutput(
-               generadorVapor.calculaOutput(
-                       sistemaRefrigeracio.calculaOutput(
-                               reactor.calculaOutput(insercioBarres))));
+       return mostraEstat().getOutputTurbina();
     }
 
     @Override
@@ -160,7 +157,15 @@ public class Dades implements InDades{
 
     @Override
     public PaginaEstat mostraEstat() {
-        ;
+        float outputReactor= reactor.calculaOutput(insercioBarres);
+        float outputSistemaRefrigeracio= sistemaRefrigeracio.calculaOutput(outputReactor);
+        float outputGeneradorVapor= generadorVapor.calculaOutput(outputSistemaRefrigeracio);
+        float outputTurbina= turbina.calculaOutput(outputGeneradorVapor);
+
+        PaginaEstat paginaEstat=new PaginaEstat(dia,insercioBarres,outputReactor,outputSistemaRefrigeracio,
+                outputGeneradorVapor,outputTurbina);
+
+        return paginaEstat;
     }
 
     @Override
