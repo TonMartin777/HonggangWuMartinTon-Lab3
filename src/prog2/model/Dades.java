@@ -117,12 +117,12 @@ public class Dades implements InDades{
 
     @Override
     public void activaReactor() throws CentralUBException {
-
+        reactor.setActivat(true);
     }
 
     @Override
     public void desactivaReactor() {
-
+        reactor.setActivat(false);
     }
 
     @Override
