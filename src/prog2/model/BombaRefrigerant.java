@@ -9,7 +9,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     private float capacitat;
     private float costOperatiu;
 
-    public BombaRefrigerant (int id, VariableUniforme variableUniforme) {
+    public BombaRefrigerant (VariableUniforme variableUniforme,int id) {
         this.id = id;
         this.variableUniforme = variableUniforme;
     }

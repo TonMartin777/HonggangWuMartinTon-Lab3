@@ -17,7 +17,7 @@ public class Dades implements InDades{
     // Afegir atributs:
 
     private VariableUniforme variableUniforme;
-    private int insercioBarres;
+    private float insercioBarres;
     private Reactor reactor;
     private SistemaRefrigeracio sistemaRefrigeracio;
     private GeneradorVapor generadorVapor;
@@ -92,7 +92,15 @@ public class Dades implements InDades{
      * Aquest mètode ha de establir la nova temperatura del reactor.
      */
     private void refrigeraReactor() {
-          // Completar
+        float temperaturaActual= mostraEstat().getOutputReactor();
+        float temperaturaExtretaSistemaRefrigeracio=mostraEstat().getOutputSistemaRefrigeracio();
+
+        float novaTemperatura= temperaturaActual-temperaturaExtretaSistemaRefrigeracio;
+
+        if (novaTemperatura<25){
+            novaTemperatura=25;
+        }
+        reactor.setTemperatura(novaTemperatura);
     }
 
     /**
@@ -102,7 +110,10 @@ public class Dades implements InDades{
      * @param paginaIncidencies Pàgina d'incidències.
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
-          // Completar
+          reactor.revisa(paginaIncidencies);
+          sistemaRefrigeracio.revisa(paginaIncidencies);
+          generadorVapor.revisa(paginaIncidencies);
+          turbina.revisa(paginaIncidencies);
     }
 
     @Override
@@ -112,7 +123,11 @@ public class Dades implements InDades{
 
     @Override
     public void setInsercioBarres(float insercioBarres) throws CentralUBException {
-
+        if (insercioBarres<0 || insercioBarres>100){
+            throw new CentralUBException("ERROR: No es pot fixar un grau d’inserció fora de l’interval 0-100");
+        }else{
+            this.insercioBarres=insercioBarres;
+        }
     }
 
     @Override
@@ -132,12 +147,25 @@ public class Dades implements InDades{
 
     @Override
     public void activaBomba(int id) throws CentralUBException {
-
+        for (BombaRefrigerant bombaRefrigerant: sistemaRefrigeracio.getLlistaBombes()){
+            if (bombaRefrigerant.getId()==id){
+                if(bombaRefrigerant.getForaDeServei()){
+                    throw new CentralUBException("ERROR: No es pot activar una bomba fora de servei");
+                }
+                else{
+                    bombaRefrigerant.activa();
+                }
+            }
+        }
     }
 
     @Override
     public void desactivaBomba(int id) {
-
+        for (BombaRefrigerant bombaRefrigerant: sistemaRefrigeracio.getLlistaBombes()){
+            if (bombaRefrigerant.getId()==id){
+                bombaRefrigerant.desactiva();
+            }
+        }
     }
 
     @Override

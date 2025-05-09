@@ -1,13 +1,13 @@
 package prog2.model;
 public class PaginaEstat extends PaginaBitacola {
-    private int grauInsercioBarres;
-    private String outputReactor;
-    private String outputSistemaRefrigeracio;
-    private String outputGeneradorVapor;
-    private String outputTurbina;
+    private float grauInsercioBarres;
+    private float outputReactor;
+    private float outputSistemaRefrigeracio;
+    private float outputGeneradorVapor;
+    private float outputTurbina;
 
-    public PaginaEstat(int dia, int grauInsercioBarres, String outputReactor,
-                       String outputSistemaRefrigeracio, String outputGeneradorVapor, String outputTurbina) {
+    public PaginaEstat(int dia, float grauInsercioBarres, float outputReactor,
+                       float outputSistemaRefrigeracio, float outputGeneradorVapor, float outputTurbina) {
         super(dia);
         this.grauInsercioBarres = grauInsercioBarres;
         this.outputReactor = outputReactor;
@@ -16,11 +16,11 @@ public class PaginaEstat extends PaginaBitacola {
         this.outputTurbina = outputTurbina;
     }
 
-    public int getGrauInsercioBarres() { return grauInsercioBarres; }
-    public String getOutputReactor() { return outputReactor; }
-    public String getOutputSistemaRefrigeracio() { return outputSistemaRefrigeracio; }
-    public String getOutputGeneradorVapor() { return outputGeneradorVapor; }
-    public String getOutputTurbina() { return outputTurbina; }
+    public float getGrauInsercioBarres() { return grauInsercioBarres; }
+    public float getOutputReactor() { return outputReactor; }
+    public float getOutputSistemaRefrigeracio() { return outputSistemaRefrigeracio; }
+    public float getOutputGeneradorVapor() { return outputGeneradorVapor; }
+    public float getOutputTurbina() { return outputTurbina; }
 
     @Override
     public String toString() {
