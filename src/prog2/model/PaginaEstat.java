@@ -1,35 +1,34 @@
 package prog2.model;
-
 public class PaginaEstat extends PaginaBitacola {
-    private float insercioBarres;
-    private float outputReactor;
-    private float outputSistemaRefrigeracio;
-    private float outputGeneradorVapor;
-    private float outputTurbina;
+    private int grauInsercioBarres;
+    private String outputReactor;
+    private String outputSistemaRefrigeracio;
+    private String outputGeneradorVapor;
+    private String outputTurbina;
 
-    public PaginaEstat(int dia,float insercioBarres, float outputReactor,float outputSistemaRefrigeracio,
-                       float outputGeneradorVapor, float outputTurbina){
+    public PaginaEstat(int dia, int grauInsercioBarres, String outputReactor,
+                       String outputSistemaRefrigeracio, String outputGeneradorVapor, String outputTurbina) {
         super(dia);
-        this.insercioBarres=insercioBarres;
-        this.outputReactor=outputReactor;
-        this.outputSistemaRefrigeracio=outputSistemaRefrigeracio;
-        this.outputGeneradorVapor=outputGeneradorVapor;
-        this.outputTurbina=outputTurbina;
+        this.grauInsercioBarres = grauInsercioBarres;
+        this.outputReactor = outputReactor;
+        this.outputSistemaRefrigeracio = outputSistemaRefrigeracio;
+        this.outputGeneradorVapor = outputGeneradorVapor;
+        this.outputTurbina = outputTurbina;
     }
 
-    public float getInsercioBarres() {return insercioBarres;}
-    public float getOutputReactor() {return outputReactor;}
-    public float getOutputSistemaRefrigeracio() {return outputSistemaRefrigeracio;}
-    public float getOutputGeneradorVapor() {return outputGeneradorVapor;}
-    public float getOutputTurbina() {return outputTurbina;}
+    public int getGrauInsercioBarres() { return grauInsercioBarres; }
+    public String getOutputReactor() { return outputReactor; }
+    public String getOutputSistemaRefrigeracio() { return outputSistemaRefrigeracio; }
+    public String getOutputGeneradorVapor() { return outputGeneradorVapor; }
+    public String getOutputTurbina() { return outputTurbina; }
 
+    @Override
     public String toString() {
-        return "# Pàgina Econòmica\n"+
-                "- Dia: " +getDia()+ "\n" +
-                "- Inserció Barres: " + getInsercioBarres() + " %" + "\n" +
-                "- Output Reactor: " + getOutputReactor() + " Graus" + "\n" +
-                "- Output Sistema de Refrigeració: " + getOutputSistemaRefrigeracio() + " Graus" + "\n" +
-                "- Output Generador de Vapor: " + getOutputGeneradorVapor() + " Graus" + "\n" +
-                "- Output Turbina: " + getOutputTurbina() + " Unitats de Potència" + "\n";
+        return "- Dia: " + getDia() + "\n"
+                + "- Grau Insercio: " + getGrauInsercioBarres() + "\n"
+                + "- Output Reactor: " + getOutputReactor() + "\n"
+                + "- Output Sistema Refrigeració: " + getOutputSistemaRefrigeracio() + "\n"
+                + "- Output Generador de Vapor: " + getOutputGeneradorVapor() + "\n"
+                + "- Output Turbina: " + getOutputTurbina() + "\n";
     }
 }
