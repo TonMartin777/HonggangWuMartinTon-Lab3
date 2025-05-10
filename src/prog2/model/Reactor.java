@@ -14,6 +14,7 @@ public class Reactor implements InComponent{
     @Override
     public void activa() throws CentralUBException {
         if (getTemperatura() > 1000 ) {
+            setActivat(false);
             throw new CentralUBException("Temperatura superior a 1000 graus");
         } else {
             setActivat(true);

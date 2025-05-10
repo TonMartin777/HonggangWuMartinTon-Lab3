@@ -6,9 +6,9 @@ public class SistemaRefrigeracio implements InComponent {
     private boolean activat;
     ArrayList<BombaRefrigerant> llistaBombes = new ArrayList();
 
-    public SistemaRefrigeracio(boolean activat, ArrayList<BombaRefrigerant> llistaBombes) {
-        this.activat = activat;
-        this.llistaBombes = llistaBombes;
+    public SistemaRefrigeracio() {
+        this.activat = true;
+        this.llistaBombes = new ArrayList<>();
     }
     public void afegirBomba(BombaRefrigerant bomba) throws CentralUBException { llistaBombes.add(bomba); }
 

@@ -2,8 +2,12 @@ package prog2.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bitacola implements InBitacola{
+public class Bitacola implements InBitacola {
     private ArrayList<PaginaBitacola> llistaBitacola;
+
+    public Bitacola() {
+        llistaBitacola = new ArrayList<>();
+    }
 
     @Override
     public void afegeixPagina(PaginaBitacola p) {
@@ -12,15 +16,22 @@ public class Bitacola implements InBitacola{
 
     @Override
     public List<PaginaIncidencies> getIncidencies() {
-        return List.of();
+        List<PaginaIncidencies> result = new ArrayList<>();
+        for (PaginaBitacola p : llistaBitacola) {
+            if (p instanceof PaginaIncidencies) {
+                result.add((PaginaIncidencies) p);
+            }
+        }
+        return result;
     }
 
-    public String toString(){
-        String s = "";
-        for (PaginaBitacola p : llistaBitacola){
-            s += p.toString();
-            s += "\n";
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (PaginaBitacola p : llistaBitacola) {
+            s.append(p.toString()).append("\n");
         }
-        return s;
+        return s.toString();
     }
 }
+
