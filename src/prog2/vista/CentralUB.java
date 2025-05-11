@@ -34,95 +34,120 @@ public class CentralUB {
         adaptador = new Adaptador();
     }
 
+    public enum OpcioMenu {
+        MOSTRAR_ESTADO_CENTRAL("Mostrar estat de la central"),
+        MOSTRAR_BITACOLA("Mostrar bitàcola"),
+        MOSTRAR_INCIDENCIAS("Mostrar incidències"),
+        MOSTRAR_GRAU_INSERCIO("mostar grau d'inserció"),
+        CAMBIAR_GRAU_INSERCIO("cambiar el grau d'insercio"),
+        MOSTRAR_SISTEMA_REFRIGERACION("Mostrar sistema refrigeració"),
+        ACTIVAR_REACTOR("Activar reactor"),
+        DESACTIVAR_REACTOR("Desactivar reactor"),
+        MOSTRAR_REACTOR("Mostrar reactor"),
+        ACTIVAR_REFRIGERACION("Activar refrigeració"),
+        DESACTIVAR_REFRIGERACION("Desactivar refrigeració"),
+        ACTIVAR_BOMBA("Activar bomba"),
+        DESACTIVAR_BOMBA("Desactivar bomba"),
+        MOSTRAR_PORCENTAJE_POTENCIA("Mostrar percentatge potència"),
+        GUARDAR_DATOS("Guardar dades"),
+        CARGAR_DATOS("Carregar dades"),
+        FINALIZAR_DIA("Finalitzar dia"),
+        SALIR("Sortir");
+
+        private final String descripcion;
+
+        OpcioMenu(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public String getDescripcion() {
+            return descripcion;
+        }
+    }
+
     public void gestioCentralUB() {
-        // Mostrar missatge inicial
+
         System.out.println("Benvingut a la planta PWR de la UB");
         System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
 
         Scanner sc = new Scanner(System.in);
 
-        String[] opcions = {
-                "Mostrar estat de la central",
-                "Mostrar bitàcola",
-                "Mostrar incidències",
-                "Mostrar sistema refrigeració",
-                "Activar reactor",
-                "Desactivar reactor",
-                "Activar refrigeració",
-                "Desactivar refrigeració",
-                "Activar bomba",
-                "Desactivar bomba",
-                "Mostrar percentatge potència",
-                "Guardar dades",
-                "Carregar dades",
-                "Finalitzar dia",
-                "Sortir"
-        };
 
-        Menu<String> menu = new Menu<>("Gestió Central UB", opcions);
+        Menu<OpcioMenu> menu = new Menu<>("Gestió Central UB", OpcioMenu.values());
 
         int opcio;
         do {
             menu.mostrarMenu();
             System.out.print("Entra una opcio >> ");
             opcio = sc.nextInt();
-            sc.nextLine(); // neteja línia
+            sc.nextLine();
 
             try {
-                switch (opcio) {
-                    case 1:
+                OpcioMenu opcionSeleccionada = OpcioMenu.values()[opcio - 1];
+
+                switch (opcionSeleccionada) {
+                    case MOSTRAR_ESTADO_CENTRAL:
                         adaptador.mostraEstat();
                         break;
-                    case 2:
+                    case MOSTRAR_BITACOLA:
                         adaptador.mostraBitacola();
                         break;
-                    case 3:
+                    case MOSTRAR_INCIDENCIAS:
                         adaptador.mostraIncidencies();
                         break;
-                    case 4:
+                    case MOSTRAR_GRAU_INSERCIO:
+                        adaptador.getInsercio();
+                        break;
+                    case CAMBIAR_GRAU_INSERCIO:
+                        System.out.println("Entra el nou grau d'inserció: ");
+                        float grauInsercio= sc.nextFloat();
+                        adaptador.setInsercio(grauInsercio);
+                        break;
+                    case MOSTRAR_SISTEMA_REFRIGERACION:
                         adaptador.mostraRefrigeracio();
                         break;
-                    case 5:
+                    case ACTIVAR_REACTOR:
                         adaptador.activaReactor();
                         break;
-                    case 6:
+                    case DESACTIVAR_REACTOR:
                         adaptador.desactivaReactor();
                         break;
-                    case 7:
+                    case MOSTRAR_REACTOR:
+                        adaptador.mostraReactor();
+                        break;
+                    case ACTIVAR_REFRIGERACION:
                         adaptador.activaRefrigeracio();
                         break;
-                    case 8:
+                    case DESACTIVAR_REFRIGERACION:
                         adaptador.desactivaRefrigeracio();
                         break;
-                    case 9:
+                    case ACTIVAR_BOMBA:
                         System.out.print("Entra ID de la bomba a activar >> ");
                         int idActiva = sc.nextInt();
                         sc.nextLine();
                         adaptador.activaBomba(idActiva);
                         break;
-                    case 10:
+                    case DESACTIVAR_BOMBA:
                         System.out.print("Entra ID de la bomba a desactivar >> ");
                         int idDesactiva = sc.nextInt();
                         sc.nextLine();
                         adaptador.desactivaBomba(idDesactiva);
                         break;
-                    case 11:
+                    case MOSTRAR_PORCENTAJE_POTENCIA:
                         adaptador.mostrarPercentatge(demandaPotencia);
                         break;
-                    case 12:
-                        System.out.print("Entra camí per guardar dades >> ");
-                        String camiGuardar = sc.nextLine();
-                        adaptador.guardaDades(camiGuardar);
+                    case GUARDAR_DATOS:
+                        System.out.print("Guardant dades >> ");
+                        adaptador.guardaDades("dades.txt");
                         break;
-                    case 13:
-                        System.out.print("Entra camí per carregar dades >> ");
-                        String camiCarregar = sc.nextLine();
-                        adaptador.carregaDades(camiCarregar);
+                    case CARGAR_DATOS:
+                        System.out.print("Carregant dades >> ");
+                        adaptador.carregaDades("dades.txt");
                         break;
-                    case 14:
+                    case FINALIZAR_DIA:
                         finalitzaDia();
                         break;
-                    case 15:
+                    case SALIR:
                         System.out.println("Sortint del sistema...");
                         break;
                     default:
@@ -134,8 +159,9 @@ public class CentralUB {
                 System.err.println("Error inesperat: " + e.getMessage());
             }
 
-        } while (opcio != 15);
+        } while (opcio != OpcioMenu.SALIR.ordinal() + 1);
     }
+
 
     private float generaDemandaPotencia() {
         float valor = Math.round(variableNormal.seguentValor());

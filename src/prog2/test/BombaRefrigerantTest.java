@@ -87,19 +87,33 @@ public class BombaRefrigerantTest {
     }
 
     @Test
-    void revisa() {
-        bomba.setForaDeServei(false);
-        bomba.revisa(new PaginaIncidencies(1)); // No hauria de fallar
+    void testRevisa() {
+        // Valor inferior a 75, NO hauria de posar-se fora de servei
+        VariableUniforme variable = new VariableUniforme(50);
+        BombaRefrigerant bomba = new BombaRefrigerant(variable, 1);
+        PaginaIncidencies p = new PaginaIncidencies(1);
 
-        assertFalse(bomba.getForaDeServei());
+        bomba.revisa(p);
 
-        // Simulem una fallada revisant
-        VariableUniforme variableAlta = new VariableUniforme(100); // Sempre > 75
-        BombaRefrigerant bombaFalla = new BombaRefrigerant(variableAlta, 2);
-        bombaFalla.revisa(new PaginaIncidencies(2));
-
-        assertTrue(bombaFalla.getForaDeServei());
+        // Comprovacions
+        assertFalse(bomba.getForaDeServei(), "La bomba no hauria d'estar fora de servei");
+        assertEquals(0, p.getIncidencies().size(), "No hauria d'haver-hi incidències");
     }
+
+    @Test
+    void testRevisaBombaForaDeServei() {
+        VariableUniforme variableStub = new VariableUniforme(80); // >75
+        BombaRefrigerant bomba = new BombaRefrigerant(variableStub, 1);
+        PaginaIncidencies p = new PaginaIncidencies(1);
+
+        bomba.revisa(p);
+
+        assertTrue(bomba.getForaDeServei());
+        assertEquals(1, p.getIncidencies().size());
+        assertEquals("La bomba esta fora de servei", p.getIncidencies().get(0));
+    }
+
+
 
     @Test
     void testToString() {

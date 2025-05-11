@@ -15,7 +15,9 @@ public class Adaptador {
 
     public void activaReactor() throws CentralUBException{ dades.activaReactor(); }
     public void desactivaReactor(){ dades.desactivaReactor(); }
-    public void mostraReactor(){ Reactor reactor = dades.mostraReactor(); }
+    public void mostraReactor(){ Reactor reactor = dades.mostraReactor();
+    System.out.println("Activat: "+ reactor.getActivat()+" Cost operatiu: "+ reactor.getCostOperatiu()+
+            " Temperatura "+ reactor.getTemperatura());}
 
     public void activaRefrigeracio() throws CentralUBException{
         SistemaRefrigeracio refrigeracio1 = dades.mostraSistemaRefrigeracio();

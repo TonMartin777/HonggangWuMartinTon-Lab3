@@ -4,7 +4,7 @@ import prog2.vista.CentralUBException;
 public class BombaRefrigerant implements InBombaRefrigerant{
     private int id;
     private boolean activat;
-    private boolean foraDeServei;
+    private boolean foraDeServei=false;
     private VariableUniforme variableUniforme;
     private float capacitat;
     private float costOperatiu=130;
@@ -55,7 +55,8 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     public void revisa(PaginaIncidencies p) {
         int numAleatori = variableUniforme.seguentValor();
         if (numAleatori > 75) {
-            this.setForaDeServei(true);
+            setForaDeServei(true);
+            p.afegeixIncidencia("La bomba esta fora de servei");
         }
     }
 

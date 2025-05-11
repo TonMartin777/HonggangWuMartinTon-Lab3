@@ -2,7 +2,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class Turbina implements InComponent{
-    private boolean activat;
+    private boolean activat=true;
 
     public void setActivat(boolean activat) {
         this.activat = activat;
