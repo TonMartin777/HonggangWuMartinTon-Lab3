@@ -106,6 +106,5 @@ public class DadesTest {
     void testFinalitzaDia() {
         Bitacola resultat = dades.finalitzaDia(150);
         assertNotNull(resultat);
-        //falta completar
     }
 }

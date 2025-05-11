@@ -188,6 +188,7 @@ public class Dades implements InDades{
         float outputReactor= reactor.calculaOutput(insercioBarres);
         float outputSistemaRefrigeracio= sistemaRefrigeracio.calculaOutput(outputReactor);
         float outputGeneradorVapor= generadorVapor.calculaOutput(outputSistemaRefrigeracio);
+        turbina.setActivat(true);
         float outputTurbina= turbina.calculaOutput(outputGeneradorVapor);
 
         PaginaEstat paginaEstat=new PaginaEstat(dia,insercioBarres,outputReactor,outputSistemaRefrigeracio,

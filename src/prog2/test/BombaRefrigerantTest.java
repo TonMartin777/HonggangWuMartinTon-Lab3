@@ -57,7 +57,7 @@ public class BombaRefrigerantTest {
     void getCapacitat() {
         bomba.setActivat(true);
         bomba.getCapacitat();
-        assertEquals(50f, bomba.getCapacitat());
+        assertEquals(250f, bomba.getCapacitat());
 
         bomba.setActivat(false);
         assertEquals(0f, bomba.getCapacitat());
