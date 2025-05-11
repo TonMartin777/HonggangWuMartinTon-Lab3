@@ -42,13 +42,13 @@ public class SistemaRefrigeracio implements InComponent {
 
     @Override
     public float getCostOperatiu() {
-        int n = 0;
+        float capacitat = 0;
         for (BombaRefrigerant b : llistaBombes) {
             if (b.getActivat()){
-                n++;
+                capacitat++;
             }
         }
-        return 130 * n;
+        return 130 * capacitat;
     }
 
     @Override
