@@ -5,11 +5,12 @@ import prog2.model.BombaRefrigerant;
 import prog2.model.SistemaRefrigeracio;
 import prog2.model.VariableUniforme;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SistemaRefrigeracioTest {
-
     private SistemaRefrigeracio sistemaRefrigeracio;
 
     @BeforeEach
@@ -31,5 +32,8 @@ class SistemaRefrigeracioTest {
 
     @Test
     void getLlistaBombes() {
+        sistemaRefrigeracio.afegirBomba(new BombaRefrigerant());
+        List<BombaRefrigerant> llistaEsperada = sistemaRefrigeracio.getLlistaBombes();
+        assertEquals(llistaEsperada, sistemaRefrigeracio.getLlistaBombes());
     }
 }
