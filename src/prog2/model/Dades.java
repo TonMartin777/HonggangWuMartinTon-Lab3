@@ -192,7 +192,6 @@ public class Dades implements InDades{
 
         PaginaEstat paginaEstat=new PaginaEstat(dia,insercioBarres,outputReactor,outputSistemaRefrigeracio,
                 outputGeneradorVapor,outputTurbina);
-
         return paginaEstat;
     }
 

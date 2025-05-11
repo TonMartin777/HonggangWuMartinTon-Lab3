@@ -55,6 +55,7 @@ public class SistemaRefrigeracio implements InComponent {
     public float calculaOutput(float input) {
         int n = 0;
         for (BombaRefrigerant b : llistaBombes) {
+            b.getCapacitat();
             if (b.getActivat()){
                 n++;
             }

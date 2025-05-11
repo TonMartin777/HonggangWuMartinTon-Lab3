@@ -7,12 +7,13 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     private boolean foraDeServei=false;
     private VariableUniforme variableUniforme;
     private float capacitat;
-    private float costOperatiu=130;
+    private float costOperatiu = 130;
 
     public BombaRefrigerant (VariableUniforme variableUniforme,int id) {
         this.id = id;
         this.variableUniforme = variableUniforme;
     }
+    public BombaRefrigerant() {}
 
     @Override
     public int getId() { return id; }
