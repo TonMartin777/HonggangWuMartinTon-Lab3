@@ -123,4 +123,3 @@ public class Adaptador {
         return bitacola.toString();
     }
 }
-

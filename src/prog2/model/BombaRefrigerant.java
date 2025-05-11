@@ -13,6 +13,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         this.id = id;
         this.variableUniforme = variableUniforme;
     }
+    public BombaRefrigerant() {}
 
     @Override
     public int getId() { return id; }
