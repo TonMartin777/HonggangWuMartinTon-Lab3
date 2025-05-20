@@ -1,14 +1,15 @@
 package prog2.vistaGUI;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class FrmGestioComponentsCentral extends JDialog {
+public class FrmVisualitzarInformacio extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JSlider sldBarresControl;
+    private JComboBox cmboxOpcionsVisualitzar;
 
-    public FrmGestioComponentsCentral(JFrame parent) {
+    public FrmVisualitzarInformacio(JFrame parent) {
         super(parent);
         setContentPane(contentPane);
         setTitle("Gestio Components Central");

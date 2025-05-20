@@ -1,12 +1,40 @@
 package prog2.vistaGUI;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AppCentralUB extends JFrame {
     private JButton btnGestioComponentsCentral;
-    private JPanel panel1;
+    private JButton btnVisualitzarInformacioCentral;
+    private JPanel panelApp;
+
+    public AppCentralUB() {
+        setTitle("Central UB");
+        setContentPane(panelApp);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(500, 400);
+        setLocationRelativeTo(null);
+        btnGestioComponentsCentral.setEnabled(true);
+        btnVisualitzarInformacioCentral.setEnabled(true);
+
+        // LISTENER GESTIO COMPONENTS CENTRAL
+        btnGestioComponentsCentral.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmGestioComponentsCentral fgcc = new FrmGestioComponentsCentral(AppCentralUB.this);
+                fgcc.setVisible(true);
+            }
+        });
+
+        // LISTNER VISUALITZAR INFORMACIÓ CENTRAL
+        btnVisualitzarInformacioCentral.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmVisualitzarInformacio fvi = new FrmVisualitzarInformacio(AppCentralUB.this);
+                fvi.setVisible(true);
+            }
+        });
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -14,21 +42,4 @@ public class AppCentralUB extends JFrame {
             appCentralUB.setVisible(true);
         });
     }
-
-    public AppCentralUB() {
-        setTitle("Central UB");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setContentPane(panel1);
-        setSize(500,400);
-        setLocationRelativeTo(null);
-        btnGestioComponentsCentral.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FrmGestioComponentsCentral frmGestioComponentsCentral = new FrmGestioComponentsCentral();
-                frmGestioComponentsCentral.setVisible(true);
-            }
-        });
-    }
-
-
 }
