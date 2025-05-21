@@ -1,5 +1,9 @@
 package prog2.vistaGUI;
+import prog2.adaptador.Adaptador;
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.*;
 
 public class FrmGestioComponentsCentral extends JDialog {
@@ -7,6 +11,7 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JSlider sldBarresControl;
+    private JLabel lblBarresControl;
 
     public FrmGestioComponentsCentral(JFrame parent) {
         super(parent);
@@ -15,6 +20,17 @@ public class FrmGestioComponentsCentral extends JDialog {
         setSize(600, 500);
         setLocationRelativeTo(parent);
         setModal(true);
+
+        sldBarresControl.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                float insercio = sldBarresControl.getValue();
+                // Aqui hay que hacer que el grado de insercion sea insercio, pero ns como.
+                // Adaptador adaptador = new Adaptador();
+                // adaptador.setInsercio(insercio);
+                lblBarresControl.setText("Inserció Barres: " + insercio + "%");
+            }
+        });
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -7,6 +7,9 @@ public class AppCentralUB extends JFrame {
     private JButton btnGestioComponentsCentral;
     private JButton btnVisualitzarInformacioCentral;
     private JPanel panelApp;
+    private JTextField txtInformacio;
+    private JButton btnFinalitzarDia;
+    private JButton btnDades;
 
     public AppCentralUB() {
         setTitle("Central UB");
