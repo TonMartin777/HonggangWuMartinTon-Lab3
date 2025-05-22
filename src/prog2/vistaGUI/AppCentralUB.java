@@ -36,8 +36,16 @@ public class AppCentralUB extends JFrame {
         btnVisualitzarInformacioCentral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmVisualitzarInformacio fvi = new FrmVisualitzarInformacio(AppCentralUB.this);
+                FrmVisualitzarInformacio fvi = new FrmVisualitzarInformacio(adaptador);
                 fvi.setVisible(true);
+            }
+        });
+
+        // LISTENER FINALITZAR DIA
+        btnFinalitzarDia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adaptador.finalitzaDia(25);
             }
         });
     }

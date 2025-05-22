@@ -58,7 +58,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
-          <text value="En aquest recuadre hem de posar el nº de dia, demanda de potencia d'aquell dia i guany acumulat."/>
+          <text value="Aquí hem de posar el nº de dia, demanda de potencia d'aquell dia i guany acumulat."/>
         </properties>
       </component>
     </children>

@@ -14,7 +14,10 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JTextField txtBarresControl;
     private JTextField txtEstatReactor;
     private JCheckBox chkEstatReactor;
+    private JTextField txtSistemaRefrigeracio;
+    private JList lstBombesForaServei;
     private float insercio;
+    private boolean reactor;
 
     public FrmGestioComponentsCentral(Adaptador adaptador) {
         setContentPane(contentPane);
@@ -34,7 +37,6 @@ public class FrmGestioComponentsCentral extends JDialog {
         chkEstatReactor.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                boolean Reactor = chkEstatReactor.isSelected();
                 if (chkEstatReactor.isSelected()) {
                     adaptador.activaReactor();
                 } else {
