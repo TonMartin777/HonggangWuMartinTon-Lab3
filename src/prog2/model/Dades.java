@@ -94,7 +94,8 @@ public class Dades implements InDades{
     private void refrigeraReactor() {
         float temperaturaActual= mostraEstat().getOutputReactor();
         float temperaturaExtretaSistemaRefrigeracio=mostraEstat().getOutputSistemaRefrigeracio();
-
+System.out.println(temperaturaActual);
+System.out.println(temperaturaExtretaSistemaRefrigeracio);
         float novaTemperatura= temperaturaActual-temperaturaExtretaSistemaRefrigeracio;
 
         if (novaTemperatura<25){

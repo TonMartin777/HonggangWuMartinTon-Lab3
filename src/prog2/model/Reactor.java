@@ -3,7 +3,7 @@ import prog2.vista.CentralUBException;
 
 public class Reactor implements InComponent{
     private boolean activat;
-    private float temperatura;
+    private float temperatura=25;
 
     public float getTemperatura() { return temperatura; }
     public void setTemperatura(float temperatura) { this.temperatura = temperatura; }
@@ -34,7 +34,8 @@ public class Reactor implements InComponent{
     @Override
     public void revisa(PaginaIncidencies p) {
         if (getTemperatura() > 1000 ) {
-            p.afegeixIncidencia("La temperatur a del reactor és superior a 1000ºC.");
+            p.afegeixIncidencia("La temperatura del reactor és superior a 1000ºC.");
+            setActivat(false);
         }
     }
 
