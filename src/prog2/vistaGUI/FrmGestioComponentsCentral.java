@@ -9,50 +9,52 @@ import java.awt.event.*;
 public class FrmGestioComponentsCentral extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
-    private JButton buttonCancel;
     private JSlider sldBarresControl;
     private JLabel lblBarresControl;
+    private JTextField txtBarresControl;
+    private JTextField txtEstatReactor;
+    private JCheckBox chkEstatReactor;
+    private float insercio;
 
     public FrmGestioComponentsCentral(Adaptador adaptador) {
         setContentPane(contentPane);
         setTitle("Gestio Components Central");
         setSize(600, 500);
         setModal(true);
+        insercio = adaptador.getInsercio();
 
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                float insercio = sldBarresControl.getValue();
-                adaptador.setInsercio(insercio);
+                insercio = sldBarresControl.getValue();
                 lblBarresControl.setText("Inserció Barres: " + insercio + "%");
+            }
+        });
+
+        chkEstatReactor.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                boolean Reactor = chkEstatReactor.isSelected();
+                if (chkEstatReactor.isSelected()) {
+                    adaptador.activaReactor();
+                } else {
+                    adaptador.desactivaReactor();
+                }
             }
         });
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                adaptador.setInsercio(insercio);
                 dispose();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 dispose();
             }
         });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 }

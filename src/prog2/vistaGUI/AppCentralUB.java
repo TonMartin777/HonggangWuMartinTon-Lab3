@@ -1,6 +1,5 @@
 package prog2.vistaGUI;
 import prog2.adaptador.Adaptador;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +32,7 @@ public class AppCentralUB extends JFrame {
             }
         });
 
-        // LISTNER VISUALITZAR INFORMACIÓ CENTRAL
+        // LISTENER VISUALITZAR INFORMACIÓ CENTRAL
         btnVisualitzarInformacioCentral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
