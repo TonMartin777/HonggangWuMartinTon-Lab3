@@ -13,21 +13,17 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JSlider sldBarresControl;
     private JLabel lblBarresControl;
 
-    public FrmGestioComponentsCentral(JFrame parent) {
-        super(parent);
+    public FrmGestioComponentsCentral(Adaptador adaptador) {
         setContentPane(contentPane);
         setTitle("Gestio Components Central");
         setSize(600, 500);
-        setLocationRelativeTo(parent);
         setModal(true);
 
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 float insercio = sldBarresControl.getValue();
-                // Aqui hay que hacer que el grado de insercion sea insercio, pero ns como.
-                // Adaptador adaptador = new Adaptador();
-                // adaptador.setInsercio(insercio);
+                adaptador.setInsercio(insercio);
                 lblBarresControl.setText("Inserció Barres: " + insercio + "%");
             }
         });

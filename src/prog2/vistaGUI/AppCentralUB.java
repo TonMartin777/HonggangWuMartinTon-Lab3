@@ -1,4 +1,6 @@
 package prog2.vistaGUI;
+import prog2.adaptador.Adaptador;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +12,10 @@ public class AppCentralUB extends JFrame {
     private JTextField txtInformacio;
     private JButton btnFinalitzarDia;
     private JButton btnDades;
+    Adaptador adaptador;
 
     public AppCentralUB() {
+        adaptador = new Adaptador();
         setTitle("Central UB");
         setContentPane(panelApp);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +28,7 @@ public class AppCentralUB extends JFrame {
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmGestioComponentsCentral fgcc = new FrmGestioComponentsCentral(AppCentralUB.this);
+                FrmGestioComponentsCentral fgcc = new FrmGestioComponentsCentral(adaptador);
                 fgcc.setVisible(true);
             }
         });
