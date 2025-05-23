@@ -46,6 +46,7 @@ public class AppCentralUB extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 adaptador.finalitzaDia(25); // Honggang que va aquí? He puesto 25 para que no de error.
+                JOptionPane.showMessageDialog(null, "Aqui debe aparecer la informacion del dia.", "Dia finalitzat", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

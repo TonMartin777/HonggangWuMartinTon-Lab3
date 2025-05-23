@@ -1,9 +1,10 @@
 package prog2.vistaGUI;
 import prog2.adaptador.Adaptador;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 
 public class FrmGestioComponentsCentral extends JDialog {
@@ -16,6 +17,7 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JCheckBox chkEstatReactor;
     private JTextField txtSistemaRefrigeracio;
     private JList lstBombesForaServei;
+    private JCheckBox chkBomba1;
     private float insercio;
     private boolean reactor;
 
@@ -25,6 +27,7 @@ public class FrmGestioComponentsCentral extends JDialog {
         setSize(600, 500);
         setModal(true);
         insercio = adaptador.getInsercio();
+
 
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
@@ -45,7 +48,26 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
-        // Aquí hay que hacer el apartado de la lista
+        lstBombesForaServei.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+            }
+        });
+
+        chkBomba1.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkBomba1.isSelected()) {
+                    // If esta bomba esta fuera de servicio
+                    JOptionPane.showMessageDialog(null, "Bomba Fora de Servei", "Excepció", JOptionPane.WARNING_MESSAGE);
+                    // Else if esta bomba no esta fuera de servicio
+                    adaptador.activaBomba(1);
+                } else {
+                    adaptador.desactivaBomba(1);
+                }
+            }
+        });
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
