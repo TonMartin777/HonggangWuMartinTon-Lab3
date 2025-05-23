@@ -45,6 +45,8 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
+        // Aquí hay que hacer el apartado de la lista
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 adaptador.setInsercio(insercio);

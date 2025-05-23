@@ -45,7 +45,7 @@ public class AppCentralUB extends JFrame {
         btnFinalitzarDia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adaptador.finalitzaDia(25);
+                adaptador.finalitzaDia(25); // Honggang que va aquí? He puesto 25 para que no de error.
             }
         });
     }
