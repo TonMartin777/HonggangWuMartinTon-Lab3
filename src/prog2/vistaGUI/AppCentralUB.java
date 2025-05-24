@@ -8,10 +8,14 @@ public class AppCentralUB extends JFrame {
     private JButton btnGestioComponentsCentral;
     private JButton btnVisualitzarInformacioCentral;
     private JPanel panelApp;
-    private JTextField txtInformacio;
     private JButton btnFinalitzarDia;
     private JButton btnDades;
+    private JLabel lblDia;
+    private JLabel lblDemandaPotencia;
+    private JLabel lblGuanysAcumulats;
     Adaptador adaptador;
+    private int diaActual = 1;
+
 
     public AppCentralUB() {
         adaptador = new Adaptador();
@@ -22,6 +26,7 @@ public class AppCentralUB extends JFrame {
         setLocationRelativeTo(null);
         btnGestioComponentsCentral.setEnabled(true);
         btnVisualitzarInformacioCentral.setEnabled(true);
+        lblDia.setText("Dia: " + diaActual);
 
         // LISTENER GESTIO COMPONENTS CENTRAL
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
@@ -45,8 +50,19 @@ public class AppCentralUB extends JFrame {
         btnFinalitzarDia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                diaActual ++;
                 adaptador.finalitzaDia(25); // Honggang que va aquí? He puesto 25 para que no de error.
                 JOptionPane.showMessageDialog(null, "Aqui debe aparecer la informacion del dia.", "Dia finalitzat", JOptionPane.INFORMATION_MESSAGE);
+                lblDia.setText("Dia: " + diaActual);
+            }
+        });
+
+        // LISTENER CARREGA I GUARDAR DADES
+        btnDades.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmGuardarCarregarDades fgcd = new FrmGuardarCarregarDades(adaptador);
+                fgcd.setVisible(true);
             }
         });
     }
