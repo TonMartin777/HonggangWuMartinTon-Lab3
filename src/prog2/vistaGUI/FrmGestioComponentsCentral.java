@@ -17,9 +17,18 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JCheckBox chkEstatReactor;
     private JTextField txtSistemaRefrigeracio;
     private JList lstBombesForaServei;
-    private JCheckBox chkBomba1;
+    private JCheckBox chkBomba1Activat;
+    private JCheckBox chkDesactivaReactor;
+    private JCheckBox chkBomba2Activat;
+    private JCheckBox chkBomba3Activat;
+    private JCheckBox chkBomba4Activat;
+    private JCheckBox chkBomba1Desactivat;
+    private JCheckBox chkBomba2Desactivat;
+    private JCheckBox chkBomba3Desactivat;
+    private JCheckBox chkBomba4Desactivat;
     private float insercio;
     private boolean reactor;
+
 
     public FrmGestioComponentsCentral(Adaptador adaptador) {
         setContentPane(contentPane);
@@ -27,7 +36,14 @@ public class FrmGestioComponentsCentral extends JDialog {
         setSize(600, 500);
         setModal(true);
         insercio = adaptador.getInsercio();
-
+        txtBarresControl.setEditable(false);
+        txtEstatReactor.setEditable(true);
+        txtSistemaRefrigeracio.setEditable(false);
+        float valorGuardat = adaptador.getInsercio();
+        int valorSlider = Math.round(valorGuardat);
+        sldBarresControl.setValue(valorSlider);
+        lblBarresControl.setText("Inserció Barres: " + valorSlider + "%");
+        insercio = valorSlider;
 
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
@@ -42,9 +58,18 @@ public class FrmGestioComponentsCentral extends JDialog {
             public void itemStateChanged(ItemEvent e) {
                 if (chkEstatReactor.isSelected()) {
                     adaptador.activaReactor();
-                } else {
+                }
+
+                JOptionPane.showMessageDialog(null, adaptador.getInfoReactor(), "Adaptador Activat ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        chkDesactivaReactor.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkDesactivaReactor.isSelected()) {
                     adaptador.desactivaReactor();
                 }
+                JOptionPane.showMessageDialog(null, adaptador.getInfoReactor(), "Adaptador Desactivat ", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -55,10 +80,10 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
-        chkBomba1.addItemListener(new ItemListener() {
+        chkBomba1Activat.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (chkBomba1.isSelected()) {
+                if (chkBomba1Activat.isSelected()) {
                     // If esta bomba esta fuera de servicio
                     JOptionPane.showMessageDialog(null, "Bomba Fora de Servei", "Excepció", JOptionPane.WARNING_MESSAGE);
                     // Else if esta bomba no esta fuera de servicio
@@ -82,5 +107,6 @@ public class FrmGestioComponentsCentral extends JDialog {
                 dispose();
             }
         });
+
     }
 }

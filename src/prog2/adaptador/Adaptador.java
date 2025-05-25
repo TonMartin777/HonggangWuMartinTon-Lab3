@@ -120,6 +120,16 @@ public class Adaptador {
         }
     }
 
+     public float getGuanysAcumulats(){
+        return dades.getGuanysAcumulats();
+     }
+
+    public String getInfoReactor() {
+        Reactor reactor = dades.mostraReactor();
+        return "Activat: " + reactor.getActivat() +
+                " | Cost operatiu: " + reactor.getCostOperatiu() +
+                " | Temperatura: " + reactor.getTemperatura();
+    }
     public String finalitzaDia(float demandaPotencia){
         Bitacola bitacola = dades.finalitzaDia(demandaPotencia);
         return bitacola.toString();

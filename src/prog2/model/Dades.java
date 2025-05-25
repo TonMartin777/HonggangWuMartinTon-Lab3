@@ -81,7 +81,7 @@ public class Dades implements InDades{
                 sistemaRefrigeracio.getCostOperatiu()+ generadorVapor.getCostOperatiu()+
                 turbina.getCostOperatiu())*PREU_UNITAT_POTENCIA;
 
-        guanysAcumulats=beneficis-(costOperatiu+penalitzacio);
+        guanysAcumulats=guanysAcumulats+ beneficis-(costOperatiu+penalitzacio);
 
         PaginaEconomica novaPagina = new PaginaEconomica(dia,demandaPotencia,potenciaGenerada,percentatgePotenciaStisfeta,
                 beneficis,penalitzacio,costOperatiu,guanysAcumulats);

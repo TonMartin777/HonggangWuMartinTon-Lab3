@@ -1,8 +1,12 @@
 package prog2.vistaGUI;
 import prog2.adaptador.Adaptador;
+import prog2.vista.VariableNormal;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static prog2.vista.CentralUB.*;
 
 public class AppCentralUB extends JFrame {
     private JButton btnGestioComponentsCentral;
@@ -13,8 +17,12 @@ public class AppCentralUB extends JFrame {
     private JLabel lblDia;
     private JLabel lblDemandaPotencia;
     private JLabel lblGuanysAcumulats;
-    Adaptador adaptador;
+    private Adaptador adaptador;
     private int diaActual = 1;
+    private VariableNormal variableNormal;
+
+    /** Demanda de potència del dia actual **/
+    private float demandaPotencia;
 
 
     public AppCentralUB() {
@@ -26,7 +34,11 @@ public class AppCentralUB extends JFrame {
         setLocationRelativeTo(null);
         btnGestioComponentsCentral.setEnabled(true);
         btnVisualitzarInformacioCentral.setEnabled(true);
+        variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
+        demandaPotencia = generaDemandaPotencia();
         lblDia.setText("Dia: " + diaActual);
+        lblDemandaPotencia.setText("Potencia demanada: "+  demandaPotencia);
+        lblGuanysAcumulats.setText("Guanys acumulats: "+adaptador.getGuanysAcumulats());
 
         // LISTENER GESTIO COMPONENTS CENTRAL
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
@@ -50,12 +62,22 @@ public class AppCentralUB extends JFrame {
         btnFinalitzarDia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                diaActual ++;
-                adaptador.finalitzaDia(25); // Honggang que va aquí? He puesto 25 para que no de error.
-                JOptionPane.showMessageDialog(null, "Aqui debe aparecer la informacion del dia.", "Dia finalitzat", JOptionPane.INFORMATION_MESSAGE);
+
+                String info = adaptador.finalitzaDia(demandaPotencia);
+
+                diaActual++;
+                demandaPotencia = generaDemandaPotencia(); // nova demanda per al següent dia
+
+                // Mostrar la informació del dia en la finestra emergent
+                JOptionPane.showMessageDialog(null, info, "Dia finalitzat", JOptionPane.INFORMATION_MESSAGE);
+
+                // Actualitzar etiquetes
                 lblDia.setText("Dia: " + diaActual);
+                lblDemandaPotencia.setText("Potència demanada: " + demandaPotencia);
+                lblGuanysAcumulats.setText("Guanys acumulats: " + adaptador.getGuanysAcumulats());
             }
         });
+
 
         // LISTENER CARREGA I GUARDAR DADES
         btnDades.addActionListener(new ActionListener() {
@@ -65,6 +87,16 @@ public class AppCentralUB extends JFrame {
                 fgcd.setVisible(true);
             }
         });
+    }
+
+    private float generaDemandaPotencia() {
+        float valor = Math.round(variableNormal.seguentValor());
+        if (valor > DEMANDA_MAX)
+            return DEMANDA_MAX;
+        else if (valor < DEMANDA_MIN)
+            return DEMANDA_MIN;
+        else
+            return valor;
     }
 
     public static void main(String[] args) {
