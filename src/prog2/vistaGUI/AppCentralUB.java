@@ -62,9 +62,7 @@ public class AppCentralUB extends JFrame {
         btnFinalitzarDia.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String info = adaptador.finalitzaDia(demandaPotencia);
-
                 diaActual++;
                 demandaPotencia = generaDemandaPotencia(); // nova demanda per al següent dia
 
