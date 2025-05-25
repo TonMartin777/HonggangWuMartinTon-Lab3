@@ -1,12 +1,11 @@
 package prog2.vistaGUI;
 import prog2.adaptador.Adaptador;
 import prog2.model.BombaRefrigerant;
+import prog2.vista.CentralUBException;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 
 public class FrmGestioComponentsCentral extends JDialog {
@@ -23,6 +22,7 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JCheckBox chkBomba2;
     private JCheckBox chkBomba3;
     private JCheckBox chkBomba4;
+    private JLabel lblTemperatura;
     private float insercio;
     private boolean reactor;
 
@@ -54,7 +54,7 @@ public class FrmGestioComponentsCentral extends JDialog {
         chkBomba3.setSelected(adaptador.getActivatBomba(2));
         chkBomba4.setSelected(adaptador.getActivatBomba(3));
         carregarBombesForaServei(adaptador);
-
+        lblTemperatura.setText("Temperatura del reactor: "+adaptador.getTemperatura());
 
 
         sldBarresControl.addChangeListener(new ChangeListener() {
@@ -69,12 +69,21 @@ public class FrmGestioComponentsCentral extends JDialog {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (chkEstatReactor.isSelected()) {
-                    adaptador.activaReactor();
-                }else{
+                    try {
+                        adaptador.activaReactor();
+                    } catch (CentralUBException ex) {
+                        JOptionPane.showMessageDialog(null,
+                                "No es pot activar el reactor: " + ex.getMessage(),
+                                "Error d'activació",
+                                JOptionPane.ERROR_MESSAGE);
+                        chkEstatReactor.setSelected(false);
+                    }
+                } else {
                     adaptador.desactivaReactor();
                 }
             }
         });
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 adaptador.setInsercio(insercio);

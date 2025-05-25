@@ -171,4 +171,8 @@ public class Adaptador {
         return foraServei;
     }
 
+    public float getTemperatura(){
+        return dades.getReactor().getTemperatura();
+    }
+
 }

@@ -54,10 +54,14 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
     @Override
     public void revisa(PaginaIncidencies p) {
+        if (getForaDeServei()) {
+            return; // Si ja està fora de servei, no cal fer res
+        }
         int numAleatori = variableUniforme.seguentValor();
         if (numAleatori > 75) {
             setForaDeServei(true);
-            p.afegeixIncidencia("La bomba esta fora de servei");
+            setActivat(false);
+            p.afegeixIncidencia("La bomba "+ getId()+ " esta fora de servei");
         }
     }
 

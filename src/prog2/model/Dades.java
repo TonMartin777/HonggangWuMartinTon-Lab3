@@ -59,6 +59,10 @@ public class Dades implements InDades{
         return sistemaRefrigeracio;
     }
 
+    public Reactor getReactor() {
+        return reactor;
+    }
+
     /**
      * Actualitza l'economia de la central. Genera una pàgina econòmica a 
      * partir de la demanda de potencia actual. Aquesta pàgina econòmica inclou 
