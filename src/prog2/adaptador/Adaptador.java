@@ -2,12 +2,14 @@ package prog2.adaptador;
 import prog2.vista.CentralUBException;
 import prog2.model.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Adaptador {
     private Dades dades;
-    public Adaptador() { dades = new Dades(); }
+
+    public Adaptador() { dades = new Dades();}
 
     // GETTERS I SETTERS
     public float getInsercio(){ return dades.getInsercioBarres(); }
@@ -52,7 +54,7 @@ public class Adaptador {
         StringBuffer resultat = new StringBuffer();
         for (PaginaIncidencies p : incidencies) {
             resultat.append(p.toString()).append("\n");
-        } System.out.println(resultat.toString());
+        } System.out.println(resultat);
     }
     public void mostrarPercentatge(float demanda){
         System.out.println("Demanda d'avui: " + demanda + "Potencia generada: " + dades.calculaPotencia() + "Percentatge de satisfacció: " + (int) ((dades.calculaPotencia()/demanda) * 100) + " %");
@@ -124,6 +126,30 @@ public class Adaptador {
         return dades.getGuanysAcumulats();
      }
 
+    public boolean estaActiuReactor() {
+        return dades.mostraReactor().getActivat();
+    }
+
+    public boolean getActivatBomba(int id) {
+        return dades.getSistemaRefrigeracio().getLlistaBombes().get(id).getActivat();
+    }
+
+    public void setActivatBomba(int id, boolean activat) {
+        try {
+            if (activat) {
+                dades.getSistemaRefrigeracio().getLlistaBombes().get(id).activa();
+            } else {
+                dades.getSistemaRefrigeracio().getLlistaBombes().get(id).desactiva();
+            }
+        } catch (CentralUBException e) {
+            System.out.println("Error activant/desactivant bomba " + id + ": " + e.getMessage());
+        }
+    }
+
+    public boolean estaForaDeServei(int idBomba) {
+        return dades.getSistemaRefrigeracio().getLlistaBombes().get(idBomba).getForaDeServei();
+    }
+
     public String getInfoReactor() {
         Reactor reactor = dades.mostraReactor();
         return "Activat: " + reactor.getActivat() +
@@ -134,4 +160,15 @@ public class Adaptador {
         Bitacola bitacola = dades.finalitzaDia(demandaPotencia);
         return bitacola.toString();
     }
+
+    public List<BombaRefrigerant> getBombesForaServei() {
+        List<BombaRefrigerant> foraServei = new ArrayList<>();
+        for (BombaRefrigerant b : dades.getSistemaRefrigeracio().getLlistaBombes()) {
+            if (b.getForaDeServei()) {
+                foraServei.add(b);
+            }
+        }
+        return foraServei;
+    }
+
 }

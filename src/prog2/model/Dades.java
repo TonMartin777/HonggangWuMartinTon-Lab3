@@ -54,7 +54,11 @@ public class Dades implements InDades{
 
         this.sistemaRefrigeracio.desactiva();
     }
-    
+
+    public SistemaRefrigeracio getSistemaRefrigeracio() {
+        return sistemaRefrigeracio;
+    }
+
     /**
      * Actualitza l'economia de la central. Genera una pàgina econòmica a 
      * partir de la demanda de potencia actual. Aquesta pàgina econòmica inclou 
@@ -88,14 +92,13 @@ public class Dades implements InDades{
         return novaPagina;
     }
 
+
     /**
      * Aquest mètode ha de establir la nova temperatura del reactor.
      */
     private void refrigeraReactor() {
         float temperaturaActual= mostraEstat().getOutputReactor();
         float temperaturaExtretaSistemaRefrigeracio=mostraEstat().getOutputSistemaRefrigeracio();
-System.out.println(temperaturaActual);
-System.out.println(temperaturaExtretaSistemaRefrigeracio);
         float novaTemperatura= temperaturaActual-temperaturaExtretaSistemaRefrigeracio;
 
         if (novaTemperatura<25){
@@ -204,7 +207,7 @@ System.out.println(temperaturaExtretaSistemaRefrigeracio);
 
     @Override
     public List<PaginaIncidencies> mostraIncidencies() {
-        return List.of();
+        return bitacola.getIncidencies();
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {

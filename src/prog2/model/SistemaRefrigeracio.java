@@ -62,4 +62,5 @@ public class SistemaRefrigeracio implements InComponent {
         }
         return Math.min(input, 250 * n);
     }
+
 }

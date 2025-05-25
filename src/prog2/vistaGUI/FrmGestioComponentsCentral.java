@@ -1,5 +1,7 @@
 package prog2.vistaGUI;
 import prog2.adaptador.Adaptador;
+import prog2.model.BombaRefrigerant;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -17,18 +19,20 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JCheckBox chkEstatReactor;
     private JTextField txtSistemaRefrigeracio;
     private JList lstBombesForaServei;
-    private JCheckBox chkBomba1Activat;
-    private JCheckBox chkDesactivaReactor;
-    private JCheckBox chkBomba2Activat;
-    private JCheckBox chkBomba3Activat;
-    private JCheckBox chkBomba4Activat;
-    private JCheckBox chkBomba1Desactivat;
-    private JCheckBox chkBomba2Desactivat;
-    private JCheckBox chkBomba3Desactivat;
-    private JCheckBox chkBomba4Desactivat;
+    private JCheckBox chkBomba1;
+    private JCheckBox chkBomba2;
+    private JCheckBox chkBomba3;
+    private JCheckBox chkBomba4;
     private float insercio;
     private boolean reactor;
 
+    private void carregarBombesForaServei(Adaptador adaptador) {
+        DefaultListModel<BombaRefrigerant> model = new DefaultListModel<>();
+        for (BombaRefrigerant bomba : adaptador.getBombesForaServei()) {
+            model.addElement(bomba);
+        }
+        lstBombesForaServei.setModel(model);
+    }
 
     public FrmGestioComponentsCentral(Adaptador adaptador) {
         setContentPane(contentPane);
@@ -44,6 +48,14 @@ public class FrmGestioComponentsCentral extends JDialog {
         sldBarresControl.setValue(valorSlider);
         lblBarresControl.setText("Inserció Barres: " + valorSlider + "%");
         insercio = valorSlider;
+        chkEstatReactor.setSelected(adaptador.estaActiuReactor());
+        chkBomba1.setSelected(adaptador.getActivatBomba(0));
+        chkBomba2.setSelected(adaptador.getActivatBomba(1));
+        chkBomba3.setSelected(adaptador.getActivatBomba(2));
+        chkBomba4.setSelected(adaptador.getActivatBomba(3));
+        carregarBombesForaServei(adaptador);
+
+
 
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
@@ -58,42 +70,11 @@ public class FrmGestioComponentsCentral extends JDialog {
             public void itemStateChanged(ItemEvent e) {
                 if (chkEstatReactor.isSelected()) {
                     adaptador.activaReactor();
-                }
-
-                JOptionPane.showMessageDialog(null, adaptador.getInfoReactor(), "Adaptador Activat ", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-        chkDesactivaReactor.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (chkDesactivaReactor.isSelected()) {
+                }else{
                     adaptador.desactivaReactor();
                 }
-                JOptionPane.showMessageDialog(null, adaptador.getInfoReactor(), "Adaptador Desactivat ", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-
-        lstBombesForaServei.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-
-            }
-        });
-
-        chkBomba1Activat.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (chkBomba1Activat.isSelected()) {
-                    // If esta bomba esta fuera de servicio
-                    JOptionPane.showMessageDialog(null, "Bomba Fora de Servei", "Excepció", JOptionPane.WARNING_MESSAGE);
-                    // Else if esta bomba no esta fuera de servicio
-                    adaptador.activaBomba(1);
-                } else {
-                    adaptador.desactivaBomba(1);
-                }
-            }
-        });
-
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 adaptador.setInsercio(insercio);
@@ -108,5 +89,75 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
+        chkBomba1.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkBomba1.isSelected()) {
+                    if (adaptador.estaForaDeServei(0)) {
+                        JOptionPane.showMessageDialog(null, "La bomba 1 està fora de servei. No es pot activar.");
+                        chkBomba1.setSelected(false); // Desmarca perquè no es pot activar
+                    } else {
+                        adaptador.activaBomba(0);
+                    }
+                } else {
+                    adaptador.desactivaBomba(0);
+                }
+                carregarBombesForaServei(adaptador);
+
+            }
+        });
+
+
+        chkBomba2.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkBomba2.isSelected()) {
+                    if (adaptador.estaForaDeServei(1)) {
+                        JOptionPane.showMessageDialog(null, "La bomba 2 està fora de servei. No es pot activar.");
+                        chkBomba2.setSelected(false); // Desmarca perquè no es pot activar
+                    } else {
+                        adaptador.activaBomba(1);
+                    }
+                } else {
+                    adaptador.desactivaBomba(1);
+                }
+                carregarBombesForaServei(adaptador);
+
+            }
+        });
+        chkBomba3.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkBomba3.isSelected()) {
+                    if (adaptador.estaForaDeServei(2)) {
+                        JOptionPane.showMessageDialog(null, "La bomba 3 està fora de servei. No es pot activar.");
+                        chkBomba3.setSelected(false); // Desmarca perquè no es pot activar
+                    } else {
+                        adaptador.activaBomba(2);
+                    }
+                } else {
+                    adaptador.desactivaBomba(2);
+                }
+                carregarBombesForaServei(adaptador);
+
+            }
+        });
+        chkBomba4.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (chkBomba4.isSelected()) {
+                    if (adaptador.estaForaDeServei(3)) {
+                        JOptionPane.showMessageDialog(null, "La bomba 4 està fora de servei. No es pot activar.");
+                        chkBomba4.setSelected(false); // Desmarca perquè no es pot activar
+                    } else {
+                        adaptador.activaBomba(3);
+                    }
+                } else {
+                    adaptador.desactivaBomba(3);
+                }
+                carregarBombesForaServei(adaptador);
+
+            }
+        });
     }
 }
